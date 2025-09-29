@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace MELI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --solu-purple: #5D3FD3;
+            --text-dark: #333333;
+            --background-light: #f8f9fa;
+            --border-color: #dee2e6;
+            --white: #ffffff;
+            --shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            --success-bg: #e6ffed;
+            --success-border: #52c41a;
+            --fail-bg: #fff1f0;
+            --fail-border: #f5222d;
+        }
+        body { font-family: 'Poppins', sans-serif; margin: 0; background-color: var(--background-light); color: var(--text-dark); }
+        .header { background-color: var(--white); padding: 20px 40px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-color); box-shadow: var(--shadow); }
+        .header-logos { display: flex; align-items: center; gap: 25px; }
+        .header-logos img { max-height: 60px; }
+        .header h1 { margin: 0; font-size: 1.8em; font-weight: 600; color: var(--text-dark); }
+        .dashboard-container { display: flex; flex-wrap: wrap; padding: 40px; gap: 30px; }
+        .column { background-color: var(--white); border-radius: 12px; box-shadow: var(--shadow); flex: 1; min-width: 320px; padding: 25px; border: 1px solid var(--border-color); }
+        .column-title { font-size: 1.5em; font-weight: 700; color: var(--solu-purple); margin-top: 0; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 2px solid var(--solu-purple); }
+        .menu-item { cursor: pointer; padding: 18px 20px; font-weight: 600; font-size: 1.1em; list-style: none; display: flex; justify-content: space-between; align-items: center; transition: background-color 0.2s; background-color: #fdfdff; border: 1px solid var(--border-color); border-radius: 8px; margin-bottom: 15px; }
+        .menu-item:hover { background-color: #f5f3ff; border-color: var(--solu-purple); }
+        .menu-item::after { content: '→'; font-size: 1.8em; color: var(--solu-purple); }
+        .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center; }
+        .modal-content { background-color: var(--background-light); padding: 20px; border-radius: 12px; width: 95%; max-width: 1400px; position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); max-height: 95vh; overflow-y: auto; }
+        .modal-content.modal-sm { max-width: 900px; }
+        .close-button { color: #aaa; position: absolute; top: 15px; right: 25px; font-size: 35px; font-weight: bold; cursor: pointer; z-index: 10; }
+        .close-button:hover { color: #333; }
+        .modal-title { font-size: 2em; font-weight: 700; color: var(--solu-purple); margin: 0 0: 10px 0; text-align: center; }
+        .modal-subtitle { text-align: center; margin-top: 0; margin-bottom: 25px; font-size: 1em; color: #555; font-style: italic; }
+
+        /* --- Flowchart Styles --- */
+        .flowchart { display: inline-flex; flex-direction: column; align-items: center; }
+        .flowchart ul { padding: 0; margin: 0; display: flex; }
+        .flowchart li { list-style: none; display: flex; flex-direction: column; align-items: center; position: relative; padding: 20px 5px 0 5px;}
+        .flowchart .main-split > li { flex-basis: 50%; }
+        .flowchart li::before { content: ''; position: absolute; top: 0; width: 2px; height: 20px; background-color: var(--text-dark); }
+        .flowchart li:not(:only-child)::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background-color: var(--text-dark); }
+        .flowchart li:first-child::after { left: 50%; width: 50%; }
+        .flowchart li:last-child::after { left: 0; width: 50%; }
+        .flowchart .flow-box { border: 2px solid var(--text-dark); background-color: var(--white); padding: 10px 15px; border-radius: 5px; text-align: center; min-width: 180px; box-shadow: var(--shadow); z-index: 2; font-size: 0.9em; position: relative; }
+        .flowchart .root { display: flex; flex-direction: column; align-items: center; }
+        .flowchart .root > .flow-box { margin-bottom: 20px; }
+        .flowchart .root > .flow-box::after { content: ''; position: absolute; bottom: -20px; left: 50%; transform: translateX(-50%); width: 2px; height: 20px; background-color: var(--text-dark); }
+        .flow-box.critical { border-color: #ffab00; background-color: #fffbe6; }
+        .flow-box.action { border-color: var(--fail-border); background-color: var(--fail-bg); }
+        .flow-box.success { border-color: var(--success-border); background-color: var(--success-bg); }
+        .flow-box.fail { border-color: var(--fail-border); background-color: var(--fail-bg); }
+        .flow-bubble { position: absolute; background-color: #e6f7ff; border: 1px dashed #91d5ff; padding: 8px 12px; border-radius: 20px; font-style: italic; font-size: 0.85em; width: 180px; z-index: 3; box-shadow: var(--shadow); text-align: left; }
+        .bubble-right { top: 50%; left: 105%; transform: translateY(-50%); }
+
+        /* --- Table Styles --- */
+        .deadlines-table { width: 100%; border-collapse: collapse; margin-top: 25px; }
+        .deadlines-table th, .deadlines-table td { border: 1px solid var(--border-color); padding: 12px 15px; text-align: left; }
+        .deadlines-table thead { background-color: var(--solu-purple); color: var(--white); font-weight: 600; }
+        .deadlines-table tbody tr:nth-child(even) { background-color: #f0ebff; }
+        .deadlines-table td:first-child { font-weight: 600; color: var(--solu-purple); }
+        .deadlines-table ul { padding-left: 20px; margin: 0; }
+
+        /* --- Logistics Styles --- */
+        .logistics-list { margin-top: 30px; }
+        .logistics-item { display: flex; align-items: center; background-color: var(--white); padding: 20px; border-radius: 10px; border: 1px solid var(--border-color); margin-bottom: 15px; }
+        .logistics-icon { font-size: 2em; margin-right: 20px; }
+        .logistics-text { font-size: 1.2em; }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-logos">
+            <img src="logo-solu.png" alt="Logo Solu">
+            <a href="./index.html">
+                <img src="logo-mercadolibre.jpg" alt="Logo Mercado Libre">
+            </a>
+            <a href="./walmart.html">
+                <img src="./walmart-logo.png" alt="">
+            </a>
+        </div>
+        <h1>Marketplace MELI</h1>
+    </header>
+
+    <div class="dashboard-container">
+        <div class="column">
+            <h2 class="column-title">PROCESOS - Gestión Monday</h2>
+            <div class="menu-item" onclick="openModal('cancellationsModal')">CANCELACIONES</div>
+            <div class="menu-item" onclick="openModal('devolutionsModal')">DEVOLUCIONES</div>
+            <div class="menu-item" onclick="openModal('delaysModal')">DEMORAS</div>
+            <div class="menu-item" onclick="openModal('returnsModal')">RETORNOS</div>
+        </div>
+
+        <div class="column">
+            <h2 class="column-title">Recursos y Plazos</h2>
+            <div class="menu-item" onclick="openModal('deadlinesModal')">TIEMPOS LÍMITE</div>
+            <div class="menu-item">GLOSARIO STATUS-MONDAY</div>
+        </div>
+
+        <div class="column">
+            <h2 class="column-title">Resumen MKT.</h2>
+            <div class="menu-item" onclick="openModal('logisticsModal')">LOGÍSTICA</div>
+            <div class="menu-item">FACTURACIÓN</div>
+            <div class="menu-item">CATÁLOGO</div>
+            <div class="menu-item">REPUTACIÓN</div>
+        </div>
+    </div>
+
+    <div id="cancellationsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('cancellationsModal')">&times;</span>
+            <h2 class="modal-title">Flujograma: Cancelaciones</h2>
+            <div style="text-align: center;">
+                <div class="flowchart">
+                    <div class="root">
+                        <div class="flow-box">INGRESA CANCELACIÓN<div class="flow-bubble bubble-right"><strong>Cliente puede cancelar ANTES de "Enviado"</strong></div></div>
+                        <div class="flow-box">CREAMOS TICKET MONDAY<div class="flow-bubble bubble-right"><strong>Status:</strong><br>LG-ESPERANDO CONFIRMACIÓN</div></div>
+                        <div class="flow-box critical">MOMENTO CRÍTICO => FRENAR ENVÍO</div>
+                        <div class="flow-box action">ACCIÓN REQUERIDA (Su respuesta)</div>
+                    </div>
+                    <ul class="main-split">
+                        <li>
+                            <div class="flow-box success"><strong>Envío FRENADO</strong><br>Solu-Reembolso Aprobado</div>
+                        </li>
+                        <li>
+                            <div class="flow-box fail"><strong>Envío NO FRENADO</strong><br>Solu-Esperando Rechazo</div>
+                            <ul>
+                                <li>
+                                    <div class="flow-box success"><strong>SI Rechaza</strong><br>LG-Confirmación Retorno W.H.</div>
+                                    <ul>
+                                        <li><div class="flow-box">DICTAMEN<div class="flow-bubble bubble-right"><strong>Plazo de reclamo 72hs</strong></div></div>
+                                            <ul>
+                                                <li><div class="flow-box success">REEMBOLSO APROBADO</div></li>
+                                                <li>
+                                                    <div class="flow-box fail">DEV NO OK</div>
+                                                    <ul>
+                                                        <li><div class="flow-box">Escalado al Seller</div></li>
+                                                        <li><div class="flow-box">Escalado a Paquetera</div></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="flow-box fail"><strong>NO Rechaza</strong><br>Inicia DEVOLUCIÓN</div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="devolutionsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('devolutionsModal')">&times;</span>
+            <h2 class="modal-title">Flujograma: Devoluciones</h2>
+            <div style="text-align: center;">
+                <div class="flowchart">
+                    <div class="root">
+                        <div class="flow-box">INGRESA DEVOLUCIÓN</div>
+                        <div class="flow-box">SOLICITAMOS EVIDENCIAS</div>
+                        <div class="flow-box action">ACCIÓN REQUERIDA (Su respuesta)</div>
+                        <div class="flow-box">LG-ESPERANDO APROBACIÓN</div>
+                    </div>
+                    <ul class="main-split">
+                        <li>
+                            <div class="flow-box">LG-AGUARDANDO GUÍA</div>
+                            <ul>
+                                <li><div class="flow-box">MELI-AGUARDANDO RETORNO<div class="flow-bubble bubble-right">Aplica a Mercado Envíos si la devolución demora más de una semana.</div></div>
+                                    <ul>
+                                        <li><div class="flow-box">LG-CONFIRMACIÓN RETORNO W.H.</div>
+                                            <ul><li><div class="flow-box">DICTAMEN<div class="flow-bubble bubble-right"><strong>Plazo de reclamo 72hs</strong></div></div>
+                                                <ul>
+                                                    <li><div class="flow-box success">REEMBOLSO APROBADO</div></li>
+                                                    <li>
+                                                        <div class="flow-box fail">DEV NO OK</div>
+                                                        <ul>
+                                                            <li><div class="flow-box">Escalado a Paquetera</div></li>
+                                                            <li><div class="flow-box">Escalado al Seller</div></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li></ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="flow-box">Solu-DATOS COMPLEMENTARIOS</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="delaysModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('delaysModal')">&times;</span>
+            <h2 class="modal-title">Flujograma: Demoras</h2>
+            <div style="text-align: center;">
+                <div class="flowchart">
+                    <div class="root">
+                        <div class="flow-box">INGRESA DEMORA</div>
+                        <div class="flow-box">CREAMOS TICKET EN MONDAY</div>
+                        <div class="flow-box">LG- ESPERANDO RESPUESTA POR DEMORA</div>
+                    </div>
+                    <ul class="main-split">
+                        <li>
+                            <div class="flow-box">SOLU-CANCELACION POR FALTA DE COBERTURA</div>
+                        </li>
+                        <li>
+                            <div class="flow-box">SOLU-DATOS COMPLEMENTARIOS</div>
+                            <ul>
+                                <li>
+                                    <div class="flow-box">LG-AGUARDANDO ENTREGA<div class="flow-bubble bubble-right">Aplica para casos ME1 - Bigger</div></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="flow-box">LG-SIN DO</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="returnsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal('returnsModal')">&times;</span>
+            <h2 class="modal-title">Flujograma: Retornos</h2>
+            <p class="modal-subtitle">Casos en los que Meli no puede entregar el producto</p>
+            <div style="text-align: center;">
+                <div class="flowchart">
+                    <div class="root">
+                        <div class="flow-box">CREAMOS TICKET MONDAY<div class="flow-bubble bubble-right">Tipología: RETORNOS</div></div>
+                        <div class="flow-box">MELI - AGUARDANDO RETORNO WH</div>
+                        <div class="flow-box">LG - CONFIRMACIÓN RETORNO WH</div>
+                        <div class="flow-box">DICTAMEN</div>
+                    </div>
+                    <ul class="main-split">
+                        <li>
+                            <div class="flow-box fail">DEV NO OK</div>
+                            <ul>
+                                <li>
+                                    <div class="flow-box">ESCALADO SELLER</div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="flow-box success">SOLU - REEMBOLSO APROBADO</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="deadlinesModal" class="modal">
+        <div class="modal-content modal-sm">
+            <span class="close-button" onclick="closeModal('deadlinesModal')">&times;</span>
+            <h2 class="modal-title">Tiempos y Plazos Clave</h2>
+            <table class="deadlines-table">
+                <thead>
+                    <tr>
+                        <th>Concepto</th>
+                        <th>Plazo / Condición</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Aclaración/Reclamo (desde recepción en WH)</td>
+                        <td>72hs hábiles</td>
+                    </tr>
+                    <tr>
+                        <td>Solicitud de cancelación por cliente</td>
+                        <td>Antes del estado "en camino"</td>
+                    </tr>
+                    <tr>
+                        <td>Devolución de un producto</td>
+                        <td>30 días</td>
+                    </tr>
+                    <tr>
+                        <td>Aprobación de la devolución</td>
+                        <td>
+                            <ul>
+                                <li>CS LG en logística LG</li>
+                                <li>En Mercado Envíos, CS LG debe validar evidencias pero el paquete puede devolverse igual si estas no son aprobadas (se debe reclamar a MELI luego en este caso)</li>
+                            </ul>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Preparación del pedido</td>
+                        <td>24 horas hábiles</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="logisticsModal" class="modal">
+        <div class="modal-content modal-sm">
+            <span class="close-button" onclick="closeModal('logisticsModal')">&times;</span>
+            <h2 class="modal-title">Tipos de Logística</h2>
+            <div class="logistics-list">
+                <div class="logistics-item">
+                    <span class="logistics-icon">✅</span>
+                    <div class="logistics-text">
+                        <strong>MercadoEnvíos (Me2)</strong> &rarr; productos pequeños.
+                    </div>
+                </div>
+                <div class="logistics-item">
+                    <span class="logistics-icon">📦</span>
+                    <div class="logistics-text">
+                        <strong>Bigger (Me1)</strong> &rarr; productos grandes o de línea blanca.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) { document.getElementById(modalId).style.display = "flex"; }
+        function closeModal(modalId) { document.getElementById(modalId).style.display = "none"; }
+        window.onclick = function(event) { if (event.target.classList.contains('modal')) { closeModal(event.target.id); } }
+    </script>
+</body>
+</html>
