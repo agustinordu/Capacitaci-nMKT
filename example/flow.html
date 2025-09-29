@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Marketplace MELI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css"
+    />
+
+    <style>
+      :root {
+        --solu-purple: #5d3fd3;
+        --text-dark: #333333;
+        --background-light: #f8f9fa;
+        --border-color: #dee2e6;
+        --white: #ffffff;
+        --shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+        --success-bg: #e6ffed;
+        --success-border: #52c41a;
+        --fail-bg: #fff1f0;
+        --fail-border: #f5222d;
+        --active-blue: #0095ff;
+      }
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        background-color: var(--background-light);
+        color: var(--text-dark);
+      }
+
+      main {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+      }
+      .header {
+        background-color: var(--white);
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border-color);
+        box-shadow: var(--shadow);
+      }
+      .header-logos {
+        display: flex;
+        align-items: center;
+        gap: 25px;
+      }
+      .header-logos img {
+        max-height: 60px;
+      }
+      .header h1 {
+        margin: 0;
+        font-size: 1.8em;
+        font-weight: 600;
+        color: var(--text-dark);
+      }
+      .dashboard-container {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 40px;
+        gap: 30px;
+      }
+      .column {
+        background-color: var(--white);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        flex: 1;
+        min-width: 320px;
+        padding: 25px;
+        border: 1px solid var(--border-color);
+      }
+      .column-title {
+        font-size: 1.5em;
+        font-weight: 700;
+        color: var(--solu-purple);
+        margin-top: 0;
+        margin-bottom: 25px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--solu-purple);
+      }
+
+      /* ESTILOS CLAVE: Aplicados al enlace <a> dentro del div .menu-item */
+      .menu-item {
+        list-style: none;
+        margin-bottom: 15px;
+      }
+      .menu-item a {
+        cursor: pointer;
+        padding: 18px 20px;
+        font-weight: 600;
+        font-size: 1.1em;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: background-color 0.2s;
+        background-color: #fdfdff;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text-dark);
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .menu-item a:hover {
+        background-color: #f5f3ff;
+        border-color: var(--solu-purple);
+      }
+      .menu-item a::after {
+        content: "→";
+        font-size: 1.8em;
+        color: var(--solu-purple);
+      }
+
+      /* Clase para disparar la alerta */
+      .menu-item .alert-trigger {
+        cursor: pointer;
+      }
+
+      /* Modales (Los eliminamos, ya no se usan) */
+      .modal {
+        display: none;
+      }
+
+      .logistics-nav {
+        display: flex;
+        gap: 10px;
+        margin-left: 30px;
+      }
+      .logistics-nav a {
+        padding: 10px 15px;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 8px;
+        transition: background-color 0.3s, color 0.3s, border-color 0.3s,
+          box-shadow 0.3s;
+        display: inline-block;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .logistics-nav a:not(.active) {
+        background-color: var(--background-light);
+        color: var(--text-dark);
+        border: 2px solid var(--border-color);
+      }
+      .logistics-nav a:not(.active):hover {
+        background-color: #e9ecef;
+        border-color: var(--solu-purple);
+      }
+      .logistics-nav a.active {
+        background-color: var(--active-blue);
+        color: var(--white);
+        border: 2px solid var(--active-blue);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+      /* --- Resto de estilos (omitiendo modales) --- */
+      .flowchart {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .flowchart ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+      .flowchart li {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        padding: 20px 5px 0 5px;
+      }
+      .flowchart .main-split > li {
+        flex-basis: 50%;
+      }
+      .flowchart li::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 20px;
+        background-color: var(--text-dark);
+      }
+      .flowchart li:not(:only-child)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-dark);
+      }
+      .flowchart li:first-child::after {
+        left: 50%;
+        width: 50%;
+      }
+      .flowchart li:last-child::after {
+        left: 0;
+        width: 50%;
+      }
+      .flowchart .flow-box {
+        border: 2px solid var(--text-dark);
+        background-color: var(--white);
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: var(--shadow);
+        z-index: 2;
+        font-size: 0.9em;
+        position: relative;
+      }
+      .flowchart .root {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .flowchart .root > .flow-box {
+        margin-bottom: 20px;
+      }
+      .flowchart .root > .flow-box::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: var(--text-dark);
+      }
+      .flow-box.critical {
+        border-color: #ffab00;
+        background-color: #fffbe6;
+      }
+      .flow-box.action {
+        border-color: var(--fail-border);
+        background-color: var(--fail-bg);
+      }
+      .flow-box.success {
+        border-color: var(--success-border);
+        background-color: var(--success-bg);
+      }
+      .flow-box.fail {
+        border-color: var(--fail-border);
+        background-color: var(--fail-bg);
+      }
+      .flow-bubble {
+        position: absolute;
+        background-color: #e6f7ff;
+        border: 1px dashed #91d5ff;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-style: italic;
+        font-size: 0.85em;
+        width: 180px;
+        z-index: 3;
+        box-shadow: var(--shadow);
+        text-align: left;
+      }
+      .bubble-right {
+        top: 50%;
+        left: 105%;
+        transform: translateY(-50%);
+      }
+      .deadlines-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+      }
+      .deadlines-table th,
+      .deadlines-table td {
+        border: 1px solid var(--border-color);
+        padding: 12px 15px;
+        text-align: left;
+      }
+      .deadlines-table thead {
+        background-color: var(--solu-purple);
+        color: var(--white);
+        font-weight: 600;
+      }
+      .deadlines-table tbody tr:nth-child(even) {
+        background-color: #f0ebff;
+      }
+      .deadlines-table td:first-child {
+        font-weight: 600;
+        color: var(--solu-purple);
+      }
+      .deadlines-table ul {
+        padding-left: 20px;
+        margin: 0;
+      }
+      .logistics-list {
+        margin-top: 30px;
+      }
+      .logistics-item {
+        display: flex;
+        align-items: center;
+        background-color: var(--white);
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 15px;
+      }
+      .logistics-icon {
+        font-size: 2em;
+        margin-right: 20px;
+      }
+      .logistics-text {
+        font-size: 1.2em;
+      }
+
+      .mermaid {
+        width: 60%;
+      }
+
+      .nodeLabel p {
+        margin-top: 5px !important;
+        font-weight: 600 !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header class="header">
+      <div class="header-logos">
+        <img src="./images/logo-solu.png" alt="Logo Solu" />
+        <a href="./index.html">
+          <img src="./images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
+        </a>
+        <a href="./walmart.html">
+          <img src="./images/walmart-logo.png" alt="" />
+        </a>
+      </div>
+      <h1>Flujo de prueba</h1>
+    </header>
+
+    <main>
+      <pre class="mermaid">
+---
+config:
+  theme: mc
+  layout: dagre
+---
+flowchart TD
+ subgraph s1["Se crea ticket en Monday"]
+        SOL_KEEP_50("LG - Esperando confirmacíon cancelación")
+  end
+ subgraph s2["Envio frenado"]
+        n1["SOLU - Reembolso aprobado"]
+  end
+ subgraph s3["Envio no frenado"]
+        n2["SOLU - Esperando rechazo"]
+  end
+ subgraph s4["Cliente rechaza"]
+        n3["LG - Confirmación de retorno WH"]
+  end
+ subgraph s5["Dictamen"]
+        n4["LG - Dictamen"]
+  end
+ subgraph s6["Devolución OK"]
+        n8["SOLU - Reembolso aprobado"]
+  end
+ subgraph s7["Devolución no OK"]
+        n9["SOLU - Dev no OK"]
+  end
+ subgraph s8["Se escala a paquetera"]
+        n10["Finalizado - Escalado a claims"]
+  end
+    INICIO("Ingresa Cancelación") L_INICIO_s1_0@--> s1
+    s1 L_s1_s2_0@--> s2 & s3
+    s3 L_s3_s4_0@--> s4 & n6["Cliente no rechaza"]
+    s4 L_s4_s5_0@--> s5
+    n6 L_n6_n7_0@--> n7["Se inicia proceso de devolución"]
+    s5 L_s5_s6_0@--> s6 & s7
+    s7 L_s7_s8_0@--> s8
+    n1@{ shape: rounded}
+    n2@{ shape: rounded}
+    n3@{ shape: rounded}
+    n4@{ shape: rounded}
+    n8@{ shape: rounded}
+    n9@{ shape: rounded}
+    n10@{ shape: rounded}
+    n6@{ shape: rounded}
+    n7@{ shape: rounded}
+    style SOL_KEEP_50 color:#FFFFFF,fill:#AA00FF
+    style n1 color:#FFFFFF,fill:#AA00FF
+    style n2 color:#FFFFFF,fill:#AA00FF
+    style n3 color:#FFFFFF,fill:#AA00FF
+    style n4 fill:#AA00FF,color:#FFFFFF
+    style n8 fill:#AA00FF,color:#FFFFFF
+    style n9 color:#FFFFFF,fill:#AA00FF
+    style n10 color:#FFFFFF,fill:#AA00FF
+    style INICIO color:#000000,fill:transparent,stroke:#AA00FF
+    style s1 color:#000000,fill:transparent,stroke:#AA00FF
+    style s2 color:#000000,fill:transparent,stroke:#AA00FF
+    style s3 color:#000000,fill:transparent,stroke:#AA00FF
+    style s4 fill:transparent,stroke:#AA00FF
+    style n6 fill:transparent,stroke:#AA00FF
+    style s5 fill:transparent,stroke:#AA00FF
+    style n7 fill:transparent,stroke:#AA00FF
+    style s6 fill:transparent,stroke:#AA00FF
+    style s7 fill:transparent,stroke:#AA00FF
+    style s8 fill:transparent,stroke:#AA00FF
+    L_INICIO_s1_0@{ animation: slow } 
+    L_s1_s2_0@{ animation: slow } 
+    L_s1_s3_0@{ animation: slow } 
+    L_s3_s4_0@{ animation: slow } 
+    L_s3_n6_0@{ animation: slow } 
+    L_s4_s5_0@{ animation: slow } 
+    L_n6_n7_0@{ animation: slow } 
+    L_s5_s6_0@{ animation: slow } 
+    L_s5_s7_0@{ animation: slow } 
+    L_s7_s8_0@{ animation: slow }
+
+
+
+    </pre
+      >
+    </main>
+
+    <script type="module">
+      import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs";
+    </script>
+  </body>
+</html>

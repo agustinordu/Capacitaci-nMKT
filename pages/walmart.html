@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marketplace MELI - Bigger</title>
+    <title>Marketplace MELI</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -318,20 +318,15 @@
   <body>
     <header class="header">
       <div class="header-logos">
-        <img src="./images/logo-solu.png" alt="Logo Solu" />
-        <a href="./index.html">
-          <img src="./images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
+        <img src="../images/logo-solu.png" alt="Logo Solu" />
+        <a href="../index.html">
+          <img src="../images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
         </a>
-        <a href="./pages/walmart.html">
-          <img src="./images/walmart-logo.png" alt="" />
+        <a href="./walmart.html">
+          <img src="../images/walmart-logo.png" alt="" />
         </a>
-
-        <nav class="logistics-nav">
-          <a href="./index.html" class="active">Bigger</a>
-          <a href="./pages/mercado-envios.html">Mercado Envíos</a>
-        </nav>
       </div>
-      <h1>Marketplace MELI - Bigger</h1>
+      <h1>Marketplace WM</h1>
     </header>
 
     <div class="dashboard-container">
@@ -339,20 +334,20 @@
         <h2 class="column-title">PROCESOS - Gestión Monday</h2>
 
         <div class="menu-item">
-          <a href="./flows-charts/bigger/cancelaciones-bigger.html"
+          <a href="../flows-charts/walmart/cancelaciones-walmart.html"
             >CANCELACIONES</a
           >
         </div>
         <div class="menu-item">
-          <a href="./flows-charts/bigger/devoluciones-bigger.html"
+          <a href="../flows-charts/walmart/devoluciones-walmart.html"
             >DEVOLUCIONES</a
           >
         </div>
         <div class="menu-item">
-          <a href="./flows-charts/bigger/demoras-bigger.html">DEMORAS</a>
+          <a href="../flows-charts/walmart/demoras-walmart.html">DEMORAS</a>
         </div>
         <div class="menu-item">
-          <a href="#" class="alert-trigger" data-alert-id="returns">RETORNOS</a>
+          <a href="../flows-charts/walmart/retornos-walmart.html">RETORNOS</a>
         </div>
       </div>
 
@@ -407,10 +402,10 @@
               Los plazos son críticos para evitar sanciones. Aquí están los principales:
             </p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
-              <li><strong>Reclamo Dictamen:</strong> 72hs hábiles desde la recepción en WH.</li>
+              <li><strong>Reclamo Dictamen:</strong> 48hs hábiles desde la recepción en WH.</li>
               <li><strong>Cancelación Cliente:</strong> Antes de que el pedido entre en estado "en camino".</li>
               <li><strong>Preparación de Pedido:</strong> 24 horas hábiles.</li>
-              <li><strong>Aprobación de devolución:</strong> LG.</li>
+              <li><strong>Aprobación de devolución:</strong> WM (Se debe reclamar al seller en caso de dictamen negativo).</li>
               <li><strong>Tiempo limite de devolución:</strong> 30 días.</li>
             </ul>
             <p style="text-align: center; margin-top: 15px; font-style: italic;">
@@ -418,58 +413,58 @@
             </p>
           `,
           icon: "info",
-          // MODIFICACIÓN APLICADA AQUÍ: Aumenta el ancho
-          width: '550px',
+          // MODIFICACIÓN: AÑADE EL ANCHO AQUÍ
+          width: "550px",
         },
         glossary: {
           title: "Glosario Status-Monday 📝",
           html: `
             <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; background-color: #f9f9f9;">
-    <h3 style="margin-top: 0; color: #333;">Tabla de Tareas y Responsabilidades</h3>
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="background-color: #e0e0e0;">
-                <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Status</th>
-                <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Responsable</th>
-                <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Acción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-ESPERANDO CONFIRMACIÓN</td>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Vendedor (Solu)</td>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Confirmar si el envío puede ser frenado.</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-CONFIRMACIÓN RETORNO W.H.</td>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Almacén / Logística</td>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Verificar estado físico del producto retornado.</td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">DICTAMEN</td>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finanzas / Reclamos</td>
-                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Determinar si se aprueba el reembolso o si hay un reclamo pendiente.</td>
-            </tr>
-            </tbody>
-    </table>
-</div>
+                <h3 style="margin-top: 0; color: #333;">Tabla de Tareas y Responsabilidades</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #e0e0e0;">
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Status</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Responsable</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-ESPERANDO CONFIRMACIÓN</td>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Vendedor (Solu)</td>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Confirmar si el envío puede ser frenado.</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-CONFIRMACIÓN RETORNO W.H.</td>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Almacén / Logística</td>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Verificar estado físico del producto retornado.</td>
+                        </tr>
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">DICTAMEN</td>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finanzas / Reclamos</td>
+                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Determinar si se aprueba el reembolso o si hay un reclamo pendiente.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
           `,
           icon: "question",
-          // MODIFICACIÓN APLICADA AQUÍ: Aumenta el ancho para la tabla
-          width: '750px',
+          // MODIFICACIÓN: AÑADE EL ANCHO AQUÍ (Necesario por la tabla)
+          width: "750px",
         },
 
         // --- Resumen MKT. (Nuevas Alertas) ---
         logistics: {
           title: "LOGÍSTICA 📦",
           html: `
-            <p style="text-align: center;">Mercado Libre usa dos tipos principales de logística:</p>
+            <p style="text-align: left;">Walmart gestiona la logística mediante paqueterías externas, a menudo denominadas **Full Shipment** o similar. La clave es:</p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
-              <li><strong>Bigger (ME1):</strong> Para productos grandes y de línea blanca (focos de reclamos por demoras y retornos).</li>
-              <li><strong>Mercado Envíos (ME2):</strong> Para productos pequeños, gestionado por paqueterías estándar.</li>
+              <li><strong>Despacho:</strong> Debe ser en las primeras 24 horas hábiles.</li>
+              <li><strong>Seguimiento:</strong> El seguimiento debe ser cargado correctamente para evitar penalizaciones.</li>
             </ul>
             <p style="text-align: center; margin-top: 15px; font-style: italic;">
-              ¡Recuerda revisar la pestaña de la logística actual para detalles específicos!
+              ¡Cumplir con los tiempos de preparación y entrega es crucial!
             </p>
           `,
           icon: "success",
@@ -479,8 +474,8 @@
           html: `
             <p style="text-align: left;">Aspectos clave:</p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
-              <li><strong>Comisión:</strong> Porcentaje fijo sobre el precio de venta.</li>
-              <li><strong>Costos Fijos:</strong> Incluyen el costo de envío (si es gratis para el cliente) y costos por manejo.</li>
+              <li><strong>Comisión:</strong> Porcentaje variable sobre el precio de venta, dependiendo de la categoría.</li>
+              <li><strong>Costos Fijos:</strong> Pueden incluir comisiones por manejo y envío (si el envío es gratuito para el cliente).</li>
               <li><strong>Retenciones:</strong> Asegúrate de que los certificados de retención estén actualizados para evitar retenciones excesivas.</li>
             </ul>
           `,
@@ -489,11 +484,11 @@
         catalog: {
           title: "CATÁLOGO 🛒",
           html: `
-            <p style="text-align: left;">La gestión del catálogo es vital para la visibilidad:</p>
+            <p style="text-align: left;">La gestión del catálogo es vital para la visibilidad en WM:</p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
               <li><strong>Ficha Técnica:</strong> Completa al 100% para mejorar el posicionamiento.</li>
-              <li><strong>Variantes:</strong> Asegúrate de que el precio y stock sean coherentes en todas las variantes de color/talla.</li>
-              <li><strong>Publicación Clásica vs. Premium:</strong> Define la estrategia de exposición y costos.</li>
+              <li><strong>Precios:</strong> Competitividad constante, ya que WM es sensible a los precios bajos de la competencia.</li>
+              <li><strong>Inventario:</strong> Stock sincronizado en tiempo real para evitar cancelaciones.</li>
             </ul>
           `,
           icon: "info",
@@ -501,34 +496,22 @@
         reputation: {
           title: "REPUTACIÓN ⭐",
           html: `
-            <p style="text-align: center;">Tu color de reputación depende de tres factores principales:</p>
+            <p style="text-align: center;">Tu reputación en Walmart se centra en el cumplimiento de métricas:</p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
-              <li><strong>Reclamos:</strong> Porcentaje de ventas con reclamos (mantener bajo el 2%).</li>
-              <li><strong>Cancelaciones:</strong> Por stock o error del vendedor (mantener bajo el 0.5%).</li>
-              <li><strong>Despacho a tiempo:</strong> Cumplir con el tiempo de preparación (24 horas hábiles).</li>
+              <li><strong>Tasa de Cancelación:</strong> Mantener muy baja (objetivo por debajo del 1%).</li>
+              <li><strong>Tasa de Defectos:</strong> Bajas incidencias por producto dañado o incorrecto.</li>
+              <li><strong>Despacho a tiempo:</strong> Clave para evitar sanciones y mejorar la visibilidad.</li>
             </ul>
             <p style="text-align: center; margin-top: 15px; font-weight: 600;">
-              ¡El color verde es el objetivo!
+              ¡El seguimiento proactivo es esencial en WM!
             </p>
           `,
-          icon: "error", // Usamos 'error' solo para que el ícono sea rojo, destacando la importancia
-        },
-        returns: {
-          title: "RETORNOS",
-          html: `
-            <p style="text-align: center; margin-top: 15px; font-weight: 600;">
-              No hay flujo de retornos para Bigger.
-            </p>
-          `,
-          icon: "error",
+          icon: "error", // Usamos 'error' solo para destacar la importancia
         },
       };
 
       // 4. Lógica para mostrar la alerta de SweetAlert
       document.addEventListener("DOMContentLoaded", () => {
-        // Ejecuta la lógica del botón activo (Bigger/ME)
-        setActiveButton();
-
         // Listener para TODOS los botones con la clase 'alert-trigger'
         document.querySelectorAll(".alert-trigger").forEach((button) => {
           button.addEventListener("click", function (e) {
@@ -542,8 +525,8 @@
                 html: content.html,
                 icon: content.icon,
                 confirmButtonText: "Entendido",
-                // Pasamos la propiedad 'width' si existe en el objeto de contenido
-                width: content.width || '32em', // Usa el ancho personalizado o el predeterminado
+                // MODIFICACIÓN: Usa el ancho personalizado o el predeterminado
+                width: content.width || "32em",
                 customClass: {
                   confirmButton: "swal2-confirm-button-solu",
                 },
@@ -560,28 +543,6 @@
       }
       function closeModal(modalId) {
         // document.getElementById(modalId).style.display = "none";
-      }
-
-      // Función para determinar el botón de Logística activo (sin cambios)
-      function setActiveButton() {
-        const currentPath = window.location.pathname.split("/").pop();
-        const biggerLink = document.querySelector(
-          '.logistics-nav a[href="./index.html"]'
-        );
-        const meLink = document.querySelector(
-          '.logistics-nav a[href="./pages/mercado-envios.html"]'
-        );
-
-        if (currentPath === "" || currentPath === "index.html") {
-          biggerLink.classList.add("active");
-          meLink.classList.remove("active");
-        } else if (currentPath === "mercado-envios.html") {
-          biggerLink.classList.remove("active");
-          meLink.classList.add("active");
-        } else {
-          biggerLink.classList.remove("active");
-          meLink.classList.remove("active");
-        }
       }
     </script>
   </body>
