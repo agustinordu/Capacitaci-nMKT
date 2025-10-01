@@ -65,6 +65,14 @@
         font-weight: 600;
         color: var(--text-dark);
       }
+      .logo-solu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .logo-solu img {
+        max-height: 40px;
+      }
       .dashboard-container {
         display: flex;
         flex-wrap: wrap;
@@ -332,33 +340,37 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="header-logos">
+  <header class="header">
+    <div class="header-logos">
+      <div class="logo-solu">
         <img src="../../images/logo-solu.png" alt="Logo Solu" />
-        <a href="../../index.html">
-          <img
-            src="../../images/logo-mercadolibre.jpg"
-            alt="Logo Mercado Libre"
-          />
-        </a>
-        <a href="../../pages/walmart.html">
-          <img src="../../images/walmart-logo.png" alt="" />
-        </a>
+        <!-- Nuevo logo debajo -->
+        <img src="../../images/lg-logo.png" alt="Logo Nuevo" class="logo-debajo" />
       </div>
-      
-      <div>
-        <h1>Devoluciones Mercado Envios</h1>
-        <div style="display: flex;align-items: center;">
-          <div class="status" style="background-color:#AA01FF ;border-radius: 5px;width: 100px;height: 50px;display: flex;justify-content: center;align-items: center;">
-        
 
+      <a href="../../index.html">
+        <img
+          src="../../images/logo-mercadolibre.jpg"
+          alt="Logo Mercado Libre"
+        />
+      </a>
+      <a href="../../pages/walmart.html">
+        <img src="../../images/walmart-logo.png" alt="" />
+      </a>
+    </div>
+    
+    <div>
+      <h1>Devoluciones Mercado Envios</h1>
+      <div style="display: flex;align-items: center;">
+        <div class="status" style="background-color:#AA01FF ;border-radius: 5px;width: 100px;height: 50px;display: flex;justify-content: center;align-items: center;">
         </div>
         <span style="margin-left: 10px;font-size: 20px;font-weight: 500;">
-        ---> Status
-          </span>
-        </div>
+          ---> Status
+        </span>
       </div>
-    </header>
+    </div>
+  </header>
+</body>
 
     <main>
       <pre class="mermaid">

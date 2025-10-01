@@ -58,6 +58,15 @@
         font-weight: 600;
         color: var(--text-dark);
       }
+      /* NUEVO: contenedor para Solu + logo debajo */
+      .logo-solu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .logo-solu img {
+        max-height: 40px;
+      }
       .dashboard-container {
         display: flex;
         flex-wrap: wrap;
@@ -83,7 +92,6 @@
         border-bottom: 2px solid var(--solu-purple);
       }
 
-      /* ESTILOS CLAVE: Aplicados al enlace <a> dentro del div .menu-item */
       .menu-item {
         list-style: none;
         margin-bottom: 15px;
@@ -113,16 +121,6 @@
         content: "→";
         font-size: 1.8em;
         color: var(--solu-purple);
-      }
-
-      /* Clase para disparar la alerta */
-      .menu-item .alert-trigger {
-        cursor: pointer;
-      }
-
-      /* Modales (Los eliminamos, ya no se usan) */
-      .modal {
-        display: none;
       }
 
       .logistics-nav {
@@ -155,175 +153,23 @@
         border: 2px solid var(--active-blue);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       }
-      /* --- Resto de estilos (omitiendo modales) --- */
-      .flowchart {
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .flowchart ul {
-        padding: 0;
-        margin: 0;
-        display: flex;
-      }
-      .flowchart li {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-        padding: 20px 5px 0 5px;
-      }
-      .flowchart .main-split > li {
-        flex-basis: 50%;
-      }
-      .flowchart li::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        width: 2px;
-        height: 20px;
-        background-color: var(--text-dark);
-      }
-      .flowchart li:not(:only-child)::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 2px;
-        background-color: var(--text-dark);
-      }
-      .flowchart li:first-child::after {
-        left: 50%;
-        width: 50%;
-      }
-      .flowchart li:last-child::after {
-        left: 0;
-        width: 50%;
-      }
-      .flowchart .flow-box {
-        border: 2px solid var(--text-dark);
-        background-color: var(--white);
-        padding: 10px 15px;
-        border-radius: 5px;
-        text-align: center;
-        min-width: 180px;
-        box-shadow: var(--shadow);
-        z-index: 2;
-        font-size: 0.9em;
-        position: relative;
-      }
-      .flowchart .root {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-      .flowchart .root > .flow-box {
-        margin-bottom: 20px;
-      }
-      .flowchart .root > .flow-box::after {
-        content: "";
-        position: absolute;
-        bottom: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 20px;
-        background-color: var(--text-dark);
-      }
-      .flow-box.critical {
-        border-color: #ffab00;
-        background-color: #fffbe6;
-      }
-      .flow-box.action {
-        border-color: var(--fail-border);
-        background-color: var(--fail-bg);
-      }
-      .flow-box.success {
-        border-color: var(--success-border);
-        background-color: var(--success-bg);
-      }
-      .flow-box.fail {
-        border-color: var(--fail-border);
-        background-color: var(--fail-bg);
-      }
-      .flow-bubble {
-        position: absolute;
-        background-color: #e6f7ff;
-        border: 1px dashed #91d5ff;
-        padding: 8px 12px;
-        border-radius: 20px;
-        font-style: italic;
-        font-size: 0.85em;
-        width: 180px;
-        z-index: 3;
-        box-shadow: var(--shadow);
-        text-align: left;
-      }
-      .bubble-right {
-        top: 50%;
-        left: 105%;
-        transform: translateY(-50%);
-      }
-      .deadlines-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 25px;
-      }
-      .deadlines-table th,
-      .deadlines-table td {
-        border: 1px solid var(--border-color);
-        padding: 12px 15px;
-        text-align: left;
-      }
-      .deadlines-table thead {
-        background-color: var(--solu-purple);
-        color: var(--white);
-        font-weight: 600;
-      }
-      .deadlines-table tbody tr:nth-child(even) {
-        background-color: #f0ebff;
-      }
-      .deadlines-table td:first-child {
-        font-weight: 600;
-        color: var(--solu-purple);
-      }
-      .deadlines-table ul {
-        padding-left: 20px;
-        margin: 0;
-      }
-      .logistics-list {
-        margin-top: 30px;
-      }
-      .logistics-item {
-        display: flex;
-        align-items: center;
-        background-color: var(--white);
-        padding: 20px;
-        border-radius: 10px;
-        border: 1px solid var(--border-color);
-        margin-bottom: 15px;
-      }
-      .logistics-icon {
-        font-size: 2em;
-        margin-right: 20px;
-      }
-      .logistics-text {
-        font-size: 1.2em;
-      }
     </style>
   </head>
 
   <body>
     <header class="header">
       <div class="header-logos">
-        <img src="./images/logo-solu.png" alt="Logo Solu" />
+        <!-- Solu + logo debajo -->
+        <div class="logo-solu">
+          <img src="./images/logo-solu.png" alt="Logo Solu" />
+          <img src="./images/lg-logo.png" alt="Logo LG" class="logo-debajo" />
+        </div>
+
         <a href="./index.html">
           <img src="./images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
         </a>
         <a href="./pages/walmart.html">
-          <img src="./images/walmart-logo.png" alt="" />
+          <img src="./images/walmart-logo.png" alt="Logo Walmart" />
         </a>
 
         <nav class="logistics-nav">
@@ -333,6 +179,8 @@
       </div>
       <h1>Marketplace MELI - Bigger</h1>
     </header>
+  </body>
+</html>
 
     <div class="dashboard-container">
       <div class="column">

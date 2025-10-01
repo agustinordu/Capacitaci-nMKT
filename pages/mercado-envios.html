@@ -58,6 +58,14 @@
         font-weight: 600;
         color: var(--text-dark);
       }
+      .logo-solu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .logo-solu img {
+        max-height: 40px;
+      }
       .dashboard-container {
         display: flex;
         flex-wrap: wrap;
@@ -316,23 +324,29 @@
   </head>
 
   <body>
-    <header class="header">
-      <div class="header-logos">
+  <header class="header">
+    <div class="header-logos">
+      <div class="logo-solu">
         <img src="../images/logo-solu.png" alt="Logo Solu" />
-        <a href="../index.html">
-          <img src="../images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
-        </a>
-        <a href="./walmart.html">
-          <img src="../images/walmart-logo.png" alt="" />
-        </a>
-
-        <nav class="logistics-nav">
-          <a href="../index.html">Bigger</a>
-          <a href="./mercado-envios.html" class="active">Mercado Envíos</a>
-        </nav>
+        <!-- Nuevo logo debajo -->
+        <img src="../images/lg-logo.png" alt="Logo Nuevo" class="logo-debajo" />
       </div>
-      <h1>Marketplace MELI - Mercado Envíos</h1>
-    </header>
+
+      <a href="../index.html">
+        <img src="../images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
+      </a>
+
+      <a href="./walmart.html">
+        <img src="../images/walmart-logo.png" alt="Logo Walmart" />
+      </a>
+
+      <nav class="logistics-nav">
+        <a href="../index.html">Bigger</a>
+        <a href="./mercado-envios.html" class="active">Mercado Envíos</a>
+      </nav>
+    </div>
+    <h1>Marketplace MELI - Mercado Envíos</h1>
+  </header>
 
     <div class="dashboard-container">
       <div class="column">
