@@ -321,7 +321,7 @@
       }
 
       .mermaid {
-        width: 30%;
+        width: 20%;
       }
 
       .nodeLabel p {
@@ -345,7 +345,19 @@
           <img src="../../images/walmart-logo.png" alt="" />
         </a>
       </div>
-      <h1>Demoras WM</h1>
+      
+      <div>
+        <h1>Demoras WM</h1>
+        <div style="display: flex;align-items: center;">
+          <div class="status" style="background-color:#AA01FF ;border-radius: 5px;width: 100px;height: 50px;display: flex;justify-content: center;align-items: center;">
+        
+
+        </div>
+        <span style="margin-left: 10px;font-size: 20px;font-weight: 500;">
+        ---> Status
+          </span>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -359,27 +371,28 @@ flowchart TD
  subgraph s2["Se crea ticket en Monday"]
         n1["LG - Esperando respuesta por demora"]
   end
- subgraph s3["No hay DO"]
-        n2["LG - Sin DO"]
-  end
  subgraph s10["Se notifica al cliente causa"]
         n12["SOLU - Notificar al cliente causa demora"]
   end
-    s2 L_s2_s3_0@--> s3 & s10
+ subgraph s11["Se despacha el producto"]
+        n13["Finalizado"]
+  end
+    s2 L_s2_s10_0@--> s10
     INICIO("Se notifica demora") L_INICIO_s2_0@--> s2
+    s10 --> s11
     n1@{ shape: rounded}
-    n2@{ shape: rounded}
     n12@{ shape: rounded}
+    n13@{ shape: rounded}
     style n1 color:#FFFFFF,fill:#AA00FF
-    style n2 color:#FFFFFF,fill:#AA00FF
     style n12 color:#FFFFFF,fill:#AA00FF
+    style n13 color:#FFFFFF,fill:#AA00FF
     style s2 color:#000000,fill:transparent,stroke:#AA00FF
-    style s3 color:#000000,fill:transparent,stroke:#AA00FF
     style s10 color:#000000,fill:transparent,stroke:#AA00FF
     style INICIO color:#000000,fill:transparent,stroke:#AA00FF
-    L_s2_s3_0@{ animation: slow } 
+    style s11 color:#000000,fill:transparent,stroke:#AA00FF
     L_s2_s10_0@{ animation: slow } 
     L_INICIO_s2_0@{ animation: slow }
+
 
 
       </pre>

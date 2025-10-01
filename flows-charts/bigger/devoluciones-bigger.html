@@ -345,7 +345,19 @@
           <img src="../../images/walmart-logo.png" alt="" />
         </a>
       </div>
-      <h1>Devoluciones Bigger</h1>
+  
+      <div>
+        <h1>Devoluciones Bigger</h1>
+        <div style="display: flex;align-items: center;">
+          <div class="status" style="background-color:#AA01FF ;border-radius: 5px;width: 100px;height: 50px;display: flex;justify-content: center;align-items: center;">
+        
+
+        </div>
+        <span style="margin-left: 10px;font-size: 20px;font-weight: 500;">
+        ---> Status
+          </span>
+        </div>
+      </div>
     </header>
 
     <main>
@@ -369,7 +381,7 @@ flowchart TD
         n3["LG - Aguardando guía"]
   end
  subgraph s5["El producto se devuelve"]
-        n4["LG - Confrimación retorno WH"]
+        n4["LG - Confirmación retorno WH"]
   end
  subgraph s6["Devolución NO OK"]
         n8["SOLU - Dev no OK"]
@@ -383,14 +395,11 @@ flowchart TD
  subgraph s9["Devolución OK"]
         n11["SOLU - Reembolso aprobado"]
   end
- subgraph s10["Se solicitan datos"]
-        n12["Solu - Datos complementarios"]
-  end
     INICIO("Ingresa Devolución") L_INICIO_s1_0@--> s1
     s1 L_s1_s2_0@--> s2
     s4 L_s4_s5_0@--> s5
     s5 L_s5_s7_0@--> s7
-    s2 L_s2_s3_0@--> s3 & s4 & s10
+    s2 L_s2_s3_0@--> s3 & s4
     s7 L_s7_s9_0@--> s9 & s6
     s6 L_s6_s8_0@--> s8
     n1@{ shape: rounded}
@@ -401,7 +410,6 @@ flowchart TD
     n9@{ shape: rounded}
     n10@{ shape: rounded}
     n11@{ shape: rounded}
-    n12@{ shape: rounded}
     style SOL_KEEP_50 color:#FFFFFF,fill:#AA00FF
     style n1 color:#FFFFFF,fill:#AA00FF
     style n2 color:#FFFFFF,fill:#AA00FF
@@ -411,7 +419,6 @@ flowchart TD
     style n9 color:#FFFFFF,fill:#AA00FF
     style n10 color:#FFFFFF,fill:#AA00FF
     style n11 fill:#AA00FF,color:#FFFFFF
-    style n12 color:#FFFFFF,fill:#AA00FF
     style INICIO color:#000000,fill:transparent,stroke:#AA00FF
     style s1 color:#000000,fill:transparent,stroke:#AA00FF
     style s2 color:#000000,fill:transparent,stroke:#AA00FF
@@ -419,7 +426,6 @@ flowchart TD
     style s5 fill:transparent,stroke:#AA00FF
     style s7 fill:transparent,stroke:#AA00FF
     style s3 color:#000000,fill:transparent,stroke:#AA00FF
-    style s10 color:#000000,fill:transparent,stroke:#AA00FF
     style s9 fill:transparent,stroke:#AA00FF
     style s6 fill:transparent,stroke:#AA00FF
     style s8 fill:transparent,stroke:#AA00FF
@@ -429,7 +435,6 @@ flowchart TD
     L_s5_s7_0@{ animation: slow } 
     L_s2_s3_0@{ animation: slow } 
     L_s2_s4_0@{ animation: slow } 
-    L_s2_s10_0@{ animation: slow } 
     L_s7_s9_0@{ animation: slow } 
     L_s7_s6_0@{ animation: slow } 
     L_s6_s8_0@{ animation: slow }

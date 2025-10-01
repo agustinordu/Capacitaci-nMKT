@@ -363,7 +363,7 @@
       </div>
 
       <div class="column">
-        <h2 class="column-title">Recursos y Plazos</h2>
+        <h2 class="column-title">Información general</h2>
 
         <div class="menu-item">
           <a href="#" class="alert-trigger" data-alert-id="deadlines"
@@ -375,23 +375,10 @@
             >GLOSARIO STATUS-MONDAY</a
           >
         </div>
-      </div>
-
-      <div class="column">
-        <h2 class="column-title">Resumen MKT.</h2>
-
-        <div class="menu-item">
-          <a href="#" class="alert-trigger" data-alert-id="logistics"
-            >LOGÍSTICA</a
-          >
-        </div>
-        <div class="menu-item">
+         <div class="menu-item">
           <a href="#" class="alert-trigger" data-alert-id="billing"
             >FACTURACIÓN</a
           >
-        </div>
-        <div class="menu-item">
-          <a href="#" class="alert-trigger" data-alert-id="catalog">CATÁLOGO</a>
         </div>
         <div class="menu-item">
           <a href="#" class="alert-trigger" data-alert-id="reputation"
@@ -399,6 +386,8 @@
           >
         </div>
       </div>
+
+      
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -437,25 +426,90 @@
                         <tr style="background-color: #e0e0e0;">
                             <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Status</th>
                             <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Responsable</th>
-                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Acción</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Descripción</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-ESPERANDO CONFIRMACIÓN</td>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Vendedor (Solu)</td>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Confirmar si el envío puede ser frenado.</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-CONFIRMACIÓN RETORNO W.H.</td>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Almacén / Logística</td>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Verificar estado físico del producto retornado.</td>
-                        </tr>
-                        <tr>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">DICTAMEN</td>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finanzas / Reclamos</td>
-                            <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Determinar si se aprueba el reembolso o si hay un reclamo pendiente.</td>
-                        </tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-Esperando confirmación cancelación</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se espera la confirmación de si se logró cancelar el producto o hay que seguir el proceso</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu - Esperando rechazo</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">No se pudo cancelar y se pide al cliente que rechace el producto</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu - Reembolso aprobado</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Hay aprobación para efectuar el reembolso</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG - Confirmación retorno WH</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">El producto esta volviendo y se espera validación de su llegada</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG - Dictamen</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se realiza la evaluación del estado del producto</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu - Dev no OK </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Luego de evaluar producto, el resultado del dictamen es negativo</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finalizado - Escalado a claims </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se cierra el ticket y se indica que se debe escalar a paquetera el reclamo del producto</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finalizado - Escalado a claims </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se cierra el ticket y se indica que se debe escalar a paquetera el reclamo del producto</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu - Aguardando evidencias </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se solicita al cliente evidencias del producto para la devolución</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG - Esperando aprobación devolución </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Ya adjuntada la evidencia, se espera la confirmación del proceso de devolución</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG - Aguardando guía </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se espera la creación de guía de devolución</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finalizado - Escalado al seller </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se cierra el ticket y se continua reclamando al seller por el producto</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG - Esperando respuesta por demora </td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se espera notificacion de la causa de demora del pedido</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu - Notificar al cliente causa demora</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Solu</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Conocida la causa de demora se le informa al cliente de la misma</td>
+            </tr>
+             <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">MELI - Aguardando retorno WH</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">MKT</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">El producto vuelve con logistica de MELI, pero falta mas de una semana para su arribo</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Finalizado</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">-</td>
+                <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se cierra el ticket</td>
+            </tr>
                     </tbody>
                 </table>
             </div>
@@ -485,9 +539,8 @@
           html: `
             <p style="text-align: left;">Aspectos clave:</p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
-              <li><strong>Comisión:</strong> Porcentaje fijo sobre el precio de venta.</li>
-              <li><strong>Costos Fijos:</strong> Incluyen el costo de envío (si es gratis para el cliente) y costos por manejo.</li>
-              <li><strong>Retenciones:</strong> Asegúrate de que los certificados de retención estén actualizados para evitar retenciones excesivas.</li>
+              <li><strong>Plazo de facturación:</strong> 30 días</li>
+              <li><strong>Se factura por:</strong> Ventiapp</li>
             </ul>
           `,
           icon: "warning",
@@ -509,9 +562,10 @@
           html: `
             <p style="text-align: center;">Tu color de reputación depende de tres factores principales:</p>
             <ul style="text-align: left; list-style-type: disc; padding-left: 20px;">
-              <li><strong>Reclamos:</strong> Porcentaje de ventas con reclamos (mantener bajo el 2%).</li>
-              <li><strong>Cancelaciones:</strong> Por stock o error del vendedor (mantener bajo el 0.5%).</li>
-              <li><strong>Despacho a tiempo:</strong> Cumplir con el tiempo de preparación (24 horas hábiles).</li>
+              <li><strong>Reclamos:</strong> Porcentaje de ventas con reclamos (mantener bajo el 1.5%).</li>
+              <li><strong>Cancelaciones:</strong> Por stock o error del vendedor (mantener bajo el 1%).</li>
+              <li><strong>Mediaciones:</strong> Porcentaje de mediaciones (mantener bajo el 0.5%).</li>
+              <li><strong>Demoras:</strong> Porcentaje de pedidos demorados (mantener bajo el 10%).</li>
             </ul>
             <p style="text-align: center; margin-top: 15px; font-weight: 600;">
               ¡El color verde es el objetivo!
