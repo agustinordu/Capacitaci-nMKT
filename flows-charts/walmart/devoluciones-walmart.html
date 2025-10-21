@@ -401,18 +401,23 @@ flowchart TD
  subgraph s11["El producto se devuelve"]
         n13["MKT - Aguardando retorno WH"]
   end
+ subgraph s12["Se espera confirmacion"]
+        n14["LG - Esperando confirmación devolución"]
+  end
     INICIO("Ingresa Devolución") L_INICIO_s1_0@--> s1
     s5 L_s5_s7_0@--> s7
     s7 L_s7_s9_0@--> s9 & s6
     s6 L_s6_s8_0@--> s8
     s11 L_s11_s5_0@--> s5
-    s1 L_s1_s11_0@--> s11
+    s1 --> s12
+    s12 --> s11
     n4@{ shape: rounded}
     n8@{ shape: rounded}
     n9@{ shape: rounded}
     n10@{ shape: rounded}
     n11@{ shape: rounded}
     n13@{ shape: rounded}
+    n14@{ shape: rounded}
     style SOL_KEEP_50 color:#FFFFFF,fill:#AA00FF
     style n4 fill:#AA00FF,color:#FFFFFF
     style n8 fill:#AA00FF,color:#FFFFFF
@@ -420,6 +425,7 @@ flowchart TD
     style n10 color:#FFFFFF,fill:#AA00FF
     style n11 fill:#AA00FF,color:#FFFFFF
     style n13 fill:#AA00FF,color:#FFFFFF
+    style n14 color:#FFFFFF,fill:#AA00FF
     style INICIO color:#000000,fill:transparent,stroke:#AA00FF
     style s1 color:#000000,fill:transparent,stroke:#AA00FF
     style s5 fill:transparent,stroke:#AA00FF
@@ -428,13 +434,13 @@ flowchart TD
     style s6 fill:transparent,stroke:#AA00FF
     style s8 fill:transparent,stroke:#AA00FF
     style s11 fill:transparent,stroke:#AA00FF
+    style s12 color:#000000,fill:transparent,stroke:#AA00FF
     L_INICIO_s1_0@{ animation: slow } 
     L_s5_s7_0@{ animation: slow } 
     L_s7_s9_0@{ animation: slow } 
     L_s7_s6_0@{ animation: slow } 
     L_s6_s8_0@{ animation: slow } 
-    L_s11_s5_0@{ animation: slow } 
-    L_s1_s11_0@{ animation: slow }
+    L_s11_s5_0@{ animation: slow }
 
 
       </pre>
