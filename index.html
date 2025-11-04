@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Marketplace MELI - Bigger</title>
+    <title>Marketplace MELI - Mercado Envíos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -58,7 +58,6 @@
         font-weight: 600;
         color: var(--text-dark);
       }
-      /* NUEVO: contenedor para Solu + logo debajo */
       .logo-solu {
         display: flex;
         flex-direction: column;
@@ -92,6 +91,7 @@
         border-bottom: 2px solid var(--solu-purple);
       }
 
+      /* ESTILOS CLAVE: Aplicados al enlace <a> dentro del div .menu-item */
       .menu-item {
         list-style: none;
         margin-bottom: 15px;
@@ -121,6 +121,16 @@
         content: "→";
         font-size: 1.8em;
         color: var(--solu-purple);
+      }
+
+      /* Clase para disparar la alerta */
+      .menu-item .alert-trigger {
+        cursor: pointer;
+      }
+
+      /* Modales (Los eliminamos, ya no se usan) */
+      .modal {
+        display: none;
       }
 
       .logistics-nav {
@@ -153,54 +163,215 @@
         border: 2px solid var(--active-blue);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       }
+      /* --- Resto de estilos (omitiendo modales) --- */
+      .flowchart {
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .flowchart ul {
+        padding: 0;
+        margin: 0;
+        display: flex;
+      }
+      .flowchart li {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        padding: 20px 5px 0 5px;
+      }
+      .flowchart .main-split > li {
+        flex-basis: 50%;
+      }
+      .flowchart li::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        width: 2px;
+        height: 20px;
+        background-color: var(--text-dark);
+      }
+      .flowchart li:not(:only-child)::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-dark);
+      }
+      .flowchart li:first-child::after {
+        left: 50%;
+        width: 50%;
+      }
+      .flowchart li:last-child::after {
+        left: 0;
+        width: 50%;
+      }
+      .flowchart .flow-box {
+        border: 2px solid var(--text-dark);
+        background-color: var(--white);
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-align: center;
+        min-width: 180px;
+        box-shadow: var(--shadow);
+        z-index: 2;
+        font-size: 0.9em;
+        position: relative;
+      }
+      .flowchart .root {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .flowchart .root > .flow-box {
+        margin-bottom: 20px;
+      }
+      .flowchart .root > .flow-box::after {
+        content: "";
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 20px;
+        background-color: var(--text-dark);
+      }
+      .flow-box.critical {
+        border-color: #ffab00;
+        background-color: #fffbe6;
+      }
+      .flow-box.action {
+        border-color: var(--fail-border);
+        background-color: var(--fail-bg);
+      }
+      .flow-box.success {
+        border-color: var(--success-border);
+        background-color: var(--success-bg);
+      }
+      .flow-box.fail {
+        border-color: var(--fail-border);
+        background-color: var(--fail-bg);
+      }
+      .flow-bubble {
+        position: absolute;
+        background-color: #e6f7ff;
+        border: 1px dashed #91d5ff;
+        padding: 8px 12px;
+        border-radius: 20px;
+        font-style: italic;
+        font-size: 0.85em;
+        width: 180px;
+        z-index: 3;
+        box-shadow: var(--shadow);
+        text-align: left;
+      }
+      .bubble-right {
+        top: 50%;
+        left: 105%;
+        transform: translateY(-50%);
+      }
+      .deadlines-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 25px;
+      }
+      .deadlines-table th,
+      .deadlines-table td {
+        border: 1px solid var(--border-color);
+        padding: 12px 15px;
+        text-align: left;
+      }
+      .deadlines-table thead {
+        background-color: var(--solu-purple);
+        color: var(--white);
+        font-weight: 600;
+      }
+      .deadlines-table tbody tr:nth-child(even) {
+        background-color: #f0ebff;
+      }
+      .deadlines-table td:first-child {
+        font-weight: 600;
+        color: var(--solu-purple);
+      }
+      .deadlines-table ul {
+        padding-left: 20px;
+        margin: 0;
+      }
+      .logistics-list {
+        margin-top: 30px;
+      }
+      .logistics-item {
+        display: flex;
+        align-items: center;
+        background-color: var(--white);
+        padding: 20px;
+        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        margin-bottom: 15px;
+      }
+      .logistics-icon {
+        font-size: 2em;
+        margin-right: 20px;
+      }
+      .logistics-text {
+        font-size: 1.2em;
+      }
     </style>
   </head>
 
   <body>
-    <header class="header">
-      <div class="header-logos">
-        <!-- Solu + logo debajo -->
-        <div class="logo-solu">
-          <img src="./images/logo-solu.png" alt="Logo Solu" />
-          <img src="./images/lg-logo.png" alt="Logo LG" class="logo-debajo" />
-        </div>
-
-        <a href="./index.html">
-          <img src="./images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
-        </a>
-        <a href="./pages/walmart.html">
-          <img src="./images/walmart-logo.png" alt="Logo Walmart" />
-        </a>
-
-        <nav class="logistics-nav">
-          <a href="./index.html" class="active">Bigger</a>
-          <a href="./pages/mercado-envios.html">Mercado Envíos</a>
-        </nav>
+  <header class="header">
+    <div class="header-logos">
+      <div class="logo-solu">
+        <img src="../images/logo-solu.png" alt="Logo Solu" />
+        <!-- Nuevo logo debajo -->
+        <img src="../images/lg-logo.png" alt="Logo Nuevo" class="logo-debajo" />
       </div>
-      <h1>Marketplace MELI - Bigger</h1>
-    </header>
-  </body>
-</html>
+
+      <a href="../index.html">
+        <img src="../images/logo-mercadolibre.jpg" alt="Logo Mercado Libre" />
+      </a>
+
+      <a href="./pages/walmart.html">
+        <img src="../images/walmart-logo.png" alt="Logo Walmart" />
+      </a>
+      <a href="./pages/coppel.html">
+        <img style="width: 120px;" src="../images/coppel-logo.png" alt="Logo Coppel" />
+      </a>
+
+    </div>
+    <h1>Marketplace MELI - Mercado Envíos</h1>
+  </header>
 
     <div class="dashboard-container">
       <div class="column">
         <h2 class="column-title">PROCESOS - Gestión Monday</h2>
 
         <div class="menu-item">
-          <a href="./flows-charts/bigger/cancelaciones-bigger.html"
+          <a
+            href="../flows-charts/mercado-envios/cancelaciones-mercado-envios.html"
             >CANCELACIONES</a
           >
         </div>
         <div class="menu-item">
-          <a href="./flows-charts/bigger/devoluciones-bigger.html"
+          <a
+            href="../flows-charts/mercado-envios/devoluciones-mercado-envios.html"
             >DEVOLUCIONES</a
           >
         </div>
         <div class="menu-item">
-          <a href="./flows-charts/bigger/demoras-bigger.html">DEMORAS</a>
+          <a href="../flows-charts/mercado-envios/demoras-mercado-envios.html"
+            >DEMORAS</a
+          >
         </div>
         <div class="menu-item">
-          <a href="#" class="alert-trigger" data-alert-id="returns">RETORNOS</a>
+          <a href="../flows-charts/mercado-envios/retornos-mercado-envios.html"
+            >RETORNOS</a
+          >
         </div>
       </div>
 
@@ -247,32 +418,32 @@
               <li><strong>Reclamo Dictamen:</strong> 72hs hábiles desde la recepción en WH.</li>
               <li><strong>Cancelación Cliente:</strong> Antes de que el pedido entre en estado "en camino".</li>
               <li><strong>Preparación de Pedido:</strong> 24 horas hábiles.</li>
-              <li><strong>Aprobación de devolución:</strong> LG.</li>
+              <li><strong>Aprobación de devolución:</strong> MELI (Se debe reclamar al seller en caso de dictamen negativo).</li>
               <li><strong>Tiempo limite de devolución:</strong> 30 días.</li>
-            </ul>
+              </ul>
             <p style="text-align: center; margin-top: 15px; font-style: italic;">
               ¡Mantente atento a estas ventanas de tiempo!
             </p>
           `,
           icon: "info",
-          // MODIFICACIÓN APLICADA AQUÍ: Aumenta el ancho
-          width: '550px',
+          // MODIFICACIÓN: AÑADE EL ANCHO AQUÍ
+          width: "550px",
         },
         glossary: {
           title: "Glosario Status-Monday 📝",
           html: `
             <div style="border: 1px solid #ccc; padding: 15px; border-radius: 8px; background-color: #f9f9f9;">
-    <h3 style="margin-top: 0; color: #333;">Tabla de Tareas y Responsabilidades</h3>
-    <table style="width: 100%; border-collapse: collapse;">
-        <thead>
-            <tr style="background-color: #e0e0e0;">
-                <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Status</th>
-                <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Responsable</th>
-                <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Descripción</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
+                <h3 style="margin-top: 0; color: #333;">Definiciones y Tareas de Status</h3>
+                <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                        <tr style="background-color: #e0e0e0;">
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Status</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Responsable</th>
+                            <th style="border: 1px solid #ddd; padding: 10px; text-align: left; width: 33%;">Descripción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
                 <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG-Esperando confirmación cancelación</td>
                 <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">LG</td>
                 <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se espera la confirmación de si se logró cancelar el producto o hay que seguir el proceso</td>
@@ -352,13 +523,13 @@
                 <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">-</td>
                 <td style="border: 1px solid #ddd; padding: 10px; background-color: #fff;">Se cierra el ticket</td>
             </tr>
-            </tbody>
-    </table>
-</div>
+                    </tbody>
+                </table>
+            </div>
           `,
           icon: "question",
-          // MODIFICACIÓN APLICADA AQUÍ: Aumenta el ancho para la tabla
-          width: '750px',
+          // MODIFICACIÓN: AÑADE EL ANCHO AQUÍ (Necesario por la tabla)
+          width: "750px",
         },
 
         // --- Resumen MKT. (Nuevas Alertas) ---
@@ -415,22 +586,11 @@
           `,
           icon: "error", // Usamos 'error' solo para que el ícono sea rojo, destacando la importancia
         },
-        returns: {
-          title: "RETORNOS",
-          html: `
-            <p style="text-align: center; margin-top: 15px; font-weight: 600;">
-              No hay gestión Monday.
-            </p>
-          `,
-          icon: "error",
-        },
       };
 
       // 4. Lógica para mostrar la alerta de SweetAlert
       document.addEventListener("DOMContentLoaded", () => {
-        // Ejecuta la lógica del botón activo (Bigger/ME)
-        setActiveButton();
-
+        
         // Listener para TODOS los botones con la clase 'alert-trigger'
         document.querySelectorAll(".alert-trigger").forEach((button) => {
           button.addEventListener("click", function (e) {
@@ -444,8 +604,8 @@
                 html: content.html,
                 icon: content.icon,
                 confirmButtonText: "Entendido",
-                // Pasamos la propiedad 'width' si existe en el objeto de contenido
-                width: content.width || '32em', // Usa el ancho personalizado o el predeterminado
+                // MODIFICACIÓN: Usa el ancho personalizado o el predeterminado
+                width: content.width || "32em",
                 customClass: {
                   confirmButton: "swal2-confirm-button-solu",
                 },
@@ -468,10 +628,10 @@
       function setActiveButton() {
         const currentPath = window.location.pathname.split("/").pop();
         const biggerLink = document.querySelector(
-          '.logistics-nav a[href="./index.html"]'
+          '.logistics-nav a[href="../index.html"]'
         );
         const meLink = document.querySelector(
-          '.logistics-nav a[href="./pages/mercado-envios.html"]'
+          '.logistics-nav a[href="./mercado-envios.html"]'
         );
 
         if (currentPath === "" || currentPath === "index.html") {
