@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Retornos Mercado Envíos</title>
+    <title>Devoluciones TikTok</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -329,7 +329,7 @@
       }
 
       .mermaid {
-        width: 30%;
+        width: 40%;
       }
 
       .nodeLabel p {
@@ -372,7 +372,7 @@
     </div>
     
     <div>
-      <h1>Retornos Mercado Envios</h1>
+      <h1>Devoluciones TikTok</h1>
       <div style="display: flex;align-items: center;">
         <div class="status" style="background-color:#AA01FF ;border-radius: 5px;width: 100px;height: 50px;display: flex;justify-content: center;align-items: center;">
         </div>
@@ -392,49 +392,62 @@ config:
   layout: dagre
 ---
 flowchart TD
- subgraph s1["Se crea ticket en Monday"]
-        SOL_KEEP_50("MELI - Aguarando retorno WH")
+ subgraph s1["Se crea ticket"]
+        SOL_KEEP_50("SOLU - Aguardando evidencias")
   end
- subgraph s3["Se confirma recepción"]
-        n2["LG - Confirmación retorno WH"]
+ subgraph s5["Se confirma recepción"]
+        n4["LG - Confirmación retorno WH"]
   end
- subgraph s5["Dictamen"]
-        n4["LG - Dictamen"]
+ subgraph s6["Devolución NO OK"]
+        n8["SOLU - Dev no OK"]
   end
- subgraph s6["Devolución OK"]
-        n8["Finalizado"]
+ subgraph s7["Dictamen"]
+        n9["LG - Dictamen"]
   end
- subgraph s7["Devolución no OK"]
-        n9["SOLU - Dev no OK"]
-  end
- subgraph s8["Se escala a MELI"]
+ subgraph s8["Se escala a TikTok"]
         n10["Finalizado - Escalado al Seller"]
   end
-    s1 L_s1_s3_0@--> s3
-    s5 L_s5_s6_0@--> s6 & s7
-    s7 L_s7_s8_0@--> s8
-    s3 --> s5
-    n2@{ shape: rounded}
+ subgraph s9["Devolución OK"]
+        n11["SOLU - Reembolso aprobado"]
+  end
+ subgraph s11["El producto se devuelve"]
+        n13["MKT - Aguardando retorno WH"]
+  end
+    INICIO("Ingresa Devolución") L_INICIO_s1_0@--> s1
+    s5 L_s5_s7_0@--> s7
+    s7 L_s7_s9_0@--> s9 & s6
+    s6 L_s6_s8_0@--> s8
+    s11 L_s11_s5_0@--> s5
+    s1 L_s1_s11_0@--> s11
     n4@{ shape: rounded}
     n8@{ shape: rounded}
     n9@{ shape: rounded}
     n10@{ shape: rounded}
+    n11@{ shape: rounded}
+    n13@{ shape: rounded}
     style SOL_KEEP_50 color:#FFFFFF,fill:#AA00FF
-    style n2 color:#FFFFFF,fill:#AA00FF
     style n4 fill:#AA00FF,color:#FFFFFF
     style n8 fill:#AA00FF,color:#FFFFFF
     style n9 color:#FFFFFF,fill:#AA00FF
     style n10 color:#FFFFFF,fill:#AA00FF
+    style n11 fill:#AA00FF,color:#FFFFFF
+    style n13 fill:#AA00FF,color:#FFFFFF
+    style INICIO color:#000000,fill:transparent,stroke:#AA00FF
     style s1 color:#000000,fill:transparent,stroke:#AA00FF
-    style s3 color:#000000,fill:transparent,stroke:#AA00FF
     style s5 fill:transparent,stroke:#AA00FF
-    style s6 fill:transparent,stroke:#AA00FF
     style s7 fill:transparent,stroke:#AA00FF
+    style s9 fill:transparent,stroke:#AA00FF
+    style s6 fill:transparent,stroke:#AA00FF
     style s8 fill:transparent,stroke:#AA00FF
-    L_s1_s3_0@{ animation: slow } 
-    L_s5_s6_0@{ animation: slow } 
+    style s11 fill:transparent,stroke:#AA00FF
+    L_INICIO_s1_0@{ animation: slow } 
     L_s5_s7_0@{ animation: slow } 
-    L_s7_s8_0@{ animation: slow }
+    L_s7_s9_0@{ animation: slow } 
+    L_s7_s6_0@{ animation: slow } 
+    L_s6_s8_0@{ animation: slow } 
+    L_s11_s5_0@{ animation: slow } 
+    L_s1_s11_0@{ animation: slow }
+
 
       </pre>
     </main>

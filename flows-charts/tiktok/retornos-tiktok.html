@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Retornos Mercado Envíos</title>
+    <title>Retornos TikTok</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -372,7 +372,7 @@
     </div>
     
     <div>
-      <h1>Retornos Mercado Envios</h1>
+      <h1>Retornos TikTok</h1>
       <div style="display: flex;align-items: center;">
         <div class="status" style="background-color:#AA01FF ;border-radius: 5px;width: 100px;height: 50px;display: flex;justify-content: center;align-items: center;">
         </div>
@@ -393,7 +393,7 @@ config:
 ---
 flowchart TD
  subgraph s1["Se crea ticket en Monday"]
-        SOL_KEEP_50("MELI - Aguarando retorno WH")
+        SOL_KEEP_50("MKT - Aguarando retorno WH")
   end
  subgraph s3["Se confirma recepción"]
         n2["LG - Confirmación retorno WH"]
@@ -407,7 +407,7 @@ flowchart TD
  subgraph s7["Devolución no OK"]
         n9["SOLU - Dev no OK"]
   end
- subgraph s8["Se escala a MELI"]
+ subgraph s8["Se escala a TikTok"]
         n10["Finalizado - Escalado al Seller"]
   end
     s1 L_s1_s3_0@--> s3
